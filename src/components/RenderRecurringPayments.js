@@ -93,7 +93,7 @@ const RenderRecurringPayments = (props) => {
           } ${nextWeeklyDate.paymentHour}:${nextWeeklyDate.paymentMinute}`
         );
       }
-      return weeklyPayments.map((payment) => <li>{payment}</li>);
+      result = weeklyPayments.map((payment) => <li>{payment}</li>);
     } else if (props.frequency === "monthly") {
       let nextMonthlyDate = new Date(firstPaymentDate());
       let monthlyPayments = [];
@@ -110,96 +110,58 @@ const RenderRecurringPayments = (props) => {
           } ${nextMonthlyDate.paymentHour}:${nextMonthlyDate.paymentMinute}`
         );
       }
-      return monthlyPayments.map((payment) => <li>{payment}</li>);
+      result = monthlyPayments.map((payment) => <li>{payment}</li>);
     }
-  } else return null;
+  } else if (props.paymentQuantity === "nTimes") {
+    if (props.frequency === "weekly") {
+      let nextWeeklyDate = new Date(firstPaymentDate());
+      let weeklyTimes =
+        parseInt(props.paymentQuantityTimes) < 5
+          ? parseInt(props.paymentQuantityTimes)
+          : 5;
+      let weeklyPayments = [];
 
-  //   if (props.paymentQuantity === "unlimited") {
-  //     if (props.frequency === "weekly") {
-  //       let nextWeeklyDate = new Date(firstPaymentDate());
-  //       let weeklyPayments = [];
+      for (let i = 0; i < weeklyTimes; i++) {
+        nextWeeklyDate = new Date(
+          nextWeeklyDate.paymentYear,
+          nextWeeklyDate.paymentMonth,
+          nextWeeklyDate.paymentDay + 7 * i
+        );
+        weeklyPayments.push(
+          `${nextWeeklyDate.paymentDay + 7 * i} ${
+            monthNames[nextWeeklyDate.paymentMonth]
+          } ${nextWeeklyDate.paymentHour}:${nextWeeklyDate.paymentMinute}`
+        );
+      }
+      result = weeklyPayments.map((payment) => <li>{payment}</li>);
+    } else if (props.frequency === "monthly") {
+      let nextMonthlyDate = new Date(firstPaymentDate());
+      let monthlyTimes =
+        parseInt(props.paymentQuantityTimes) < 5
+          ? parseInt(props.paymentQuantityTimes)
+          : 5;
+      let monthlyPayments = [];
 
-  //       for (let i = 0; i < 5; i++) {
-  //         nextWeeklyDate = new Date(
-  //           nextWeeklyDate.paymentYear,
-  //           nextWeeklyDate.paymentMonth,
-  //           nextWeeklyDate.paymentDay + 7 * i
-  //         );
-  //         weeklyPayments.push(
-  //           `${nextWeeklyDate.paymentDay + 7 * i} ${
-  //             monthNames[nextWeeklyDate.paymentMonth]
-  //           } ${nextWeeklyDate.paymentHour}:${nextWeeklyDate.paymentMinute}`
-  //         );
-  //       }
-  //       result = weeklyPayments.map((payment) => <li>{payment}</li>);
-  //     } else if (props.frequency === "monthly") {
-  //       let nextMonthlyDate = new Date(firstPaymentDate());
-  //       let monthlyPayments = [];
-
-  //       for (let i = 0; i < 5; i++) {
-  //         nextMonthlyDate = new Date(
-  //           nextMonthlyDate.paymentYear,
-  //           nextMonthlyDate.paymentMonth + i,
-  //           nextMonthlyDate.paymentDay
-  //         );
-  //         monthlyPayments.push(
-  //           `${nextMonthlyDate.paymentDay} ${
-  //             monthNames[nextMonthlyDate.paymentMonth + i]
-  //           } ${nextMonthlyDate.paymentHour}:${nextMonthlyDate.paymentMinute}`
-  //         );
-  //       }
-  //       result = monthlyPayments.map((payment) => <li>{payment}</li>);
-  //     }
-  //   } else if (props.paymentQuantity === "nTimes") {
-  //     if (props.frequency === "weekly") {
-  //       let nextWeeklyDate = new Date(firstPaymentDate());
-  //       let weeklyTimes =
-  //         parseInt(props.paymentQuantityTimes) < 5
-  //           ? parseInt(props.paymentQuantityTimes)
-  //           : 5;
-  //       let weeklyPayments = [];
-
-  //       for (let i = 0; i < weeklyTimes; i++) {
-  //         nextWeeklyDate = new Date(
-  //           nextWeeklyDate.paymentYear,
-  //           nextWeeklyDate.paymentMonth,
-  //           nextWeeklyDate.paymentDay + 7 * i
-  //         );
-  //         weeklyPayments.push(
-  //           `${nextWeeklyDate.paymentDay + 7 * i} ${
-  //             monthNames[nextWeeklyDate.paymentMonth]
-  //           } ${nextWeeklyDate.paymentHour}:${nextWeeklyDate.paymentMinute}`
-  //         );
-  //       }
-  //       result = weeklyPayments.map((payment) => <li>{payment}</li>);
-  //     } else if (props.frequency === "monthly") {
-  //       let nextMonthlyDate = new Date(firstPaymentDate());
-  //       let monthlyTimes =
-  //         parseInt(props.paymentQuantityTimes) < 5
-  //           ? parseInt(props.paymentQuantityTimes)
-  //           : 5;
-  //       let monthlyPayments = [];
-
-  //       for (let i = 0; i < monthlyTimes; i++) {
-  //         nextMonthlyDate = new Date(
-  //           nextMonthlyDate.paymentYear,
-  //           nextMonthlyDate.paymentMonth + i,
-  //           nextMonthlyDate.paymentDay
-  //         );
-  //         result = (
-  //           <li>{`${nextMonthlyDate.paymentDay} ${
-  //             monthNames[nextMonthlyDate.paymentMonth + i]
-  //           } ${nextMonthlyDate.paymentHour}:${
-  //             nextMonthlyDate.paymentMinute
-  //           }`}</li>
-  //         );
-  //       }
-  //       result = monthlyPayments.map((payment) => <li>{payment}</li>);
-  //     } else {
-  //       return null;
-  //     }
-  //   }
-  //   return <div>{result}</div>;
+      for (let i = 0; i < monthlyTimes; i++) {
+        nextMonthlyDate = new Date(
+          nextMonthlyDate.paymentYear,
+          nextMonthlyDate.paymentMonth + i,
+          nextMonthlyDate.paymentDay
+        );
+        result = (
+          <li>{`${nextMonthlyDate.paymentDay} ${
+            monthNames[nextMonthlyDate.paymentMonth + i]
+          } ${nextMonthlyDate.paymentHour}:${
+            nextMonthlyDate.paymentMinute
+          }`}</li>
+        );
+      }
+      result = monthlyPayments.map((payment) => <li>{payment}</li>);
+    } else {
+      return null;
+    }
+  }
+  return <div>{result}</div>;
 };
 
 const mapStateToProps = (state) => {
