@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+}
+
+.app {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-weight: 400;
+  margin: 0;
+}
+
+.payment-window {
+  display: flex;
+  max-width: 30%;
+  flex-direction: column;
+  margin-top: 25px;
+  box-shadow: -2px 3px 5px #ababab, 2px 3px 5px #ababab;
+}
+
+.payment-window__title {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 2.2;
+  background-color: #f6f6f6;
+}
+
+.payment-form {
+  /* border: 1px solid blue; */
+  padding: 15px 30px;
+}
+
+.payment-form__submit-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+  margin-top: 25px;
+  max-width: 31%;
+  padding: 15px 25px;
+  font-weight: 600;
+  border: 0;
+  background-color: #d3d3d3;
+  box-shadow: 0 2px 0 #ababab;
+}
+
+.payment-form__submit-button:active {
+  box-shadow: 0 0 0 #ababab;
+  transform: translateY(2px);
+}
+
+.payment-form__submit-button:hover {
+  cursor: pointer;
+}
+
+.form-control {
+  display: flex;
+  width: 100%;
+  padding-bottom: 25px;
+}
+
+.form-control__label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #8c8c8c;
+  min-width: 20%;
+  text-align: left;
+}
+
+.calendar-display .date-picker {
+  color: #ec312e;
+}
+
+.calendar-display {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: unset;
+  font-size: 1rem;
+  padding: 25px;
+}
+
+.calendar-display .visible {
+  justify-content: flex-start;
+}
+
+.calendar-display__item {
+  display: flex;
+  margin-top: 70%;
+  flex-direction: column;
+}
+
+.calendar-display__placeholder {
+  display: flex;
+  padding: 25px 5px;
+  border: 1px solid #d3d3d3;
+}
+
+.text-input {
+  display: flex;
+  min-width: 5%;
+  max-width: 15%;
+  margin-right: 5px;
+  outline: none;
+  line-height: 1.2rem;
+  font-size: 0.8rem;
+  border: 1px solid #d3d3d3;
+  cursor: pointer;
+}
+
+.text-input__label {
+  display: flex;
+  min-width: 5%;
+  margin-right: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.fancy {
+  padding-left: 10px;
+  font-style: italic;
+  color: #938d8a;
+}
+
+/* New styles */
+.input-group {
+  display: flex;
+  flex-direction: row;
+  min-width: 75%;
+  flex-direction: column;
+}
+
+.input-group__section {
+  display: flex;
+  min-width: 100%;
+  max-width: 100%;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+/* .new-input-section__input-pair {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+} */
+
+.radio-button {
+  display: flex;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.radio-button__label {
+  display: flex;
+  font-size: 1rem;
+  font-weight: 500;
+  min-width: 30%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.radio-button__dropdown {
+  display: flex;
+  outline: none;
+  border: 1px solid #d3d3d3;
+  cursor: pointer;
+}
+
+.date-picker {
+  display: flex;
+  background: none;
+  border: none;
+  padding: 5px 0;
+  cursor: pointer;
+  outline: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  color: #5ead41;
+}
+
+.date-list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: left;
+}
+
+/* Modifiers */
+.visible {
+  visibility: visible;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.w-xs {
+  max-width: 5%;
+}
